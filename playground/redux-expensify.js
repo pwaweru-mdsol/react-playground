@@ -156,11 +156,19 @@ const store = createStore(combineReducers({
 // get visible expenses
 const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
 	return expenses.filter(expense => {
-		const startDateMatch = typeof startDate !== 'number';
-		const endDateMatch;
-		const textMatch;
+		const startDateMatch = typeof startDate !== 'number' || expense.createdAt >= startDate;
+		const endDateMatch = typeof endDate !== 'number' || expense.createdAt <= endDate;
+		const textMatch = expense.description.toLowerCase().includes(text);
 
 		return startDateMatch && endDateMatch && textMatch;
+	}).sort((a, b) => {
+		if(sortBy === 'date'){
+			return a.createdAt < b.createdAt ? 1 : -1;
+		}
+
+		if(sortBy === 'amount'){
+			return a.amount < b.amount ? 1 : -1;
+		}
 	});
 }
 
@@ -171,22 +179,21 @@ store.subscribe(() => {
 });
 
 
-
-store.dispatch(addExpense({ description: 'rent', amount: 100}));
-store.dispatch(addExpense({ description: 'coffee', amount: 700}));
+store.dispatch(addExpense({ description: 'rent', amount: 800000, createdAt: -221000}));
+store.dispatch(addExpense({ description: 'coffee', amount: 700, createdAt: -1000}));
 // // store.dispatch(removeExpense({id: rentExpense.expense.id}));
 // store.dispatch(editExpense(rentExpense.expense.id, { description: 'coffee', amount: 500 }));
 
-store.dispatch(setTextFilter('rent'));
+// store.dispatch(setTextFilter('f'));
 // store.dispatch(setTextFilter());
 // store.dispatch(setTextFilter('coffee'));
 
-// store.dispatch(sortByAmount());
+store.dispatch(sortByAmount());
 // store.dispatch(sortByDate());
 
-// store.dispatch(setStartDate(102));
+// store.dispatch(setStartDate(-800));
 // store.dispatch(setStartDate());
-// store.dispatch(setEndDate(97685));
+// store.dispatch(setEndDate(-2000));
 // store.dispatch(setEndDate());
 
 
