@@ -2,7 +2,8 @@ const path = require('path')
 const publicPath = path.resolve(__dirname, 'public');
 
 module.exports = {
-	entry: './playground/redux-expensify.js',
+	entry: './App.js',
+	// entry: './playground/hoc.js',
 	mode: 'development',
 	output: {
 		path: publicPath,
