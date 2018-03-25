@@ -1,10 +1,19 @@
 import React, { Component } from "react";
+import "react-dates/initialize";
+import { SingleDatePicker } from "react-dates";
+import "react-dates/lib/css/_datepicker.css";
+import moment from "moment";
+
+const ERROR_MESSAGE = "Please enter a description or an amount";
 
 export class ExpenseForm extends Component {
   state = {
     description: "",
     note: "",
-    amount: ""
+    amount: "",
+    createdAt: moment(),
+    calenderFocused: false,
+    error: undefined
   };
 
   onDescriptionChange = event => {
@@ -19,15 +28,40 @@ export class ExpenseForm extends Component {
 
   onAmountChange = event => {
     const amount = event.target.value;
-    if (amount.match(/^\d*(\.\d{0,2})?$/)) {
+    if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
       this.setState(() => ({ amount }));
+    }
+  };
+
+  onDateChange = createdAt => {
+    if (createdAt) {
+      this.setState(() => ({ createdAt: createdAt }));
+    }
+  };
+
+  onFocusChange = ({ focused }) => {
+    this.setState(() => ({ calenderFocused: focused }));
+  };
+
+  onSubmit = event => {
+    event.preventDefault();
+    if (!this.state.description || !this.state.amount) {
+      this.setState(() => ({ error: ERROR_MESSAGE }));
+    } else {
+      this.setState(() => ({ error: undefined }));
+      this.props.onSubmit({
+        description: this.state.description,
+        amount: parseFloat(this.state.amount, 10) * 100,
+        createdAt: this.state.createdAt
+      });
     }
   };
 
   render() {
     return (
       <div>
-        <form action="">
+        {this.state.error ? <p>{ERROR_MESSAGE}!</p> : null}
+        <form onSubmit={this.onSubmit}>
           <input
             type="text"
             placeholder="Description"
@@ -40,6 +74,15 @@ export class ExpenseForm extends Component {
             placeholder="Amount"
             value={this.state.amount}
             onChange={this.onAmountChange}
+          />
+
+          <SingleDatePicker
+            date={this.state.createdAt}
+            onDateChange={this.onDateChange}
+            focused={this.state.calenderFocused}
+            onFocusChange={this.onFocusChange}
+            numberOfMonths={1}
+            isOutsideRange={() => false}
           />
           <textarea
             placeholder="Add a note for your exepnse (optional)"
