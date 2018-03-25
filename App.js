@@ -14,20 +14,14 @@ import { Provider } from 'react-redux';
 
 const store = configureStore();
 
-store.dispatch(addExpense({ description: 'Water Bill', amount: 800000, createdAt: -221000 }));
-store.dispatch(addExpense({ description: 'Gas Bill', amount: 5674567, createdAt: 675465 }));
-store.dispatch(setTextFilter('a'));
+store.dispatch(addExpense({ description: 'Water Bill', amount: 4500, createdAt: 1}));
+store.dispatch(addExpense({ description: 'Gas Bill', amount: 1000, createdAt: 2}));
+store.dispatch(addExpense({ description: 'Coffee', amount: 3243432, createdAt: 3}));
 
-const state = store.getState();
-
-const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-
-console.log(visibleExpenses);
-
-const jsx = (
+const App = (
 	<Provider store={store}>
 		<AppRouter />
 	</Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById('app'));
+ReactDOM.render(App, document.getElementById('app'));

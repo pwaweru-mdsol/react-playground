@@ -5,10 +5,10 @@ export default (state = expensesDefaultState, action) => {
 		case 'ADD_EXPENSE':
 			return [...state, action.expense];
 		case 'REMOVE_EXPENSE':
-			return [...state.filter(({ id }) => { return id !== action.id})]
+			return [...state.filter(({ uuid }) => { return uuid !== action.uuid})]
 		case 'EDIT_EXPENSE':
 			return state.map(expense => {
-				if(expense.id === action.id) {
+				if(expense.uuid === action.uuid) {
 					return {
 						...expense,
 						...action.expense
