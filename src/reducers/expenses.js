@@ -13,8 +13,10 @@ export default (state = expensesDefaultState, action) => {
 						...expense,
 						...action.expense
 					}
+				} else {
+					return expense;
 				}
-			})
+			});
 		default: return state;
 	}
 }

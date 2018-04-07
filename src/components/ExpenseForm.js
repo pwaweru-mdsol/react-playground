@@ -7,14 +7,18 @@ import moment from "moment";
 const ERROR_MESSAGE = "Please enter a description or an amount";
 
 export class ExpenseForm extends Component {
-  state = {
-    description: "",
-    note: "",
-    amount: "",
-    createdAt: moment(),
-    calenderFocused: false,
-    error: undefined
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      description: props.expense ? props.expense.description : '',
+      note: props.expense ? props.expense.note : '' ,
+      amount: props.expense ? (props.expense.amount / 100).toString() : '',
+      createdAt: props.expense ? moment(props.expense.createdAt) : '',
+      calenderFocused: false,
+      error: undefined
+    }
+  }
 
   onDescriptionChange = event => {
     const description = event.target.value;
@@ -52,7 +56,8 @@ export class ExpenseForm extends Component {
       this.props.onSubmit({
         description: this.state.description,
         amount: parseFloat(this.state.amount, 10) * 100,
-        createdAt: this.state.createdAt
+        createdAt: this.state.createdAt.valueOf(),
+        note: this.state.note
       });
     }
   };

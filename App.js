@@ -8,7 +8,6 @@ import AppRouter from './src/routers/AppRouter';
 import configureStore from './src/store/configureStore';
 import { addExpense } from './src/actions/expenses';
 import { setTextFilter } from './src/actions/filters';
-import getVisibleExpenses from './src/selectors/expenses';
 
 import { Provider } from 'react-redux';
 
