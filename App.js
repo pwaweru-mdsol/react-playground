@@ -8,6 +8,7 @@ import AppRouter from './src/routers/AppRouter';
 import configureStore from './src/store/configureStore';
 import { addExpense } from './src/actions/expenses';
 import { setTextFilter } from './src/actions/filters';
+import "react-dates/lib/css/_datepicker.css";
 
 import { Provider } from 'react-redux';
 
