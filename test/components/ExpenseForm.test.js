@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ExpenseForm from '../../src/components/ExpenseForm';
+import { wrap } from 'module';
 
 const expenses = [
     {
@@ -78,5 +79,16 @@ test('should not set amount on input change', () => {
     wrapper.find('input').at(1).simulate('change', {
         target: { value }
     })
-    expect(wrapper.state('amount')).toBe("");
+    expect(wrapper.state('amount')).toBe('');
+});
+
+test('should call onSubmit prop for valid from submission', () => {
+  const expense = {"amount": 1.95, "createdAt": 978307200000, "description": "hello world", "note": ""};
+  const onSubmitSpy = jest.fn();
+  const wrapper = shallow(<ExpenseForm expense={expenses[0]} onSubmit={onSubmitSpy} />);
+  wrapper.find('form').simulate('submit', {
+      preventDefault: () => { }
+  });
+  expect(wrapper.state('error')).toBe(undefined);
+  expect(onSubmitSpy).toHaveBeenCalledWith(expense);
 });
