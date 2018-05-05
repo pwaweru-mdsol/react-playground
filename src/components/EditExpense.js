@@ -1,36 +1,42 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import ExpenseForm from "./ExpenseForm";
 import { editExpense, removeExpense } from "../actions/expenses";
 
-const EditExpense = props => {
-  return (
-    <div>
-      <ExpenseForm
-        expense={props.expense}
-        onSubmit={expense => {
-          props.dispatch(editExpense(props.expense.uuid, expense));
-          props.history.push("/");
-        }}
-      />
-      <button
-        onClick={() => {
-          props.dispatch(removeExpense(props.expense.uuid));
-          props.history.push("/");
-        }}
-      >
-        remove
-      </button>
-    </div>
-  );
-};
+export class EditExpense extends Component {
+  onSubmit = expense => {
+    this.props.editExpense(this.props.expense.uuid, expense);
+    this.props.history.push('/');
+  }
+   onRemove = expense => {
+    this.props.removeExpense(this.props.expense.uuid);
+    this.props.history.push('/');
+   }
 
-const mapStateToProps = (state, props) => {
-  return {
-    expense: state.expenses.find(
-      expense => expense.uuid === props.match.params.uuid
-    )
-  };
-};
+   render() {
+     return (
+        <div>
+          <ExpenseForm
+            expense={this.props.expense}
+            onSubmit={this.onSubmit}
+        />
+        <button
+          onClick={this.onRemove}
+        >
+           remove
+        </button>
+      </div>
+     )
+   }
+}
 
-export default connect(mapStateToProps)(EditExpense);
+const mapStateToProps = (state, props) => ({
+  expense: state.expenses.find(expense => expense.uuid === props.match.params.uuid)
+});
+
+const mapDispatchToProps = (dispatch, props) => ({
+  editExpense: (uuid, expense) => dispatch(editExpense(uuid, expense)),
+  removeExpense: uuid => dispatch(removeExpense(uuid)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditExpense);

@@ -69,7 +69,7 @@ test('should set amount on input change', () => {
     const wrapper = shallow(<ExpenseForm />);
     wrapper.find('input').at(1).simulate('change', {
         target: { value }
-    })
+    });
     expect(wrapper.state('amount')).toBe(value);
 });
 
