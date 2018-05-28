@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js start
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js test
 
 PATH: 
   /usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -24,7 +24,7 @@ npm manifest:
     "scripts": {
       "build:dev": "webpack",
       "build:prod": "webpack -p --env production",
-      "dev-server": "webpack-dev-server",
+      "dev": "webpack-dev-server",
       "clean": "pretty-quick --staged",
       "test": "jest --silent --config=jest.config.json",
       "start": "node server/server.js",
@@ -8642,7 +8642,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c node server/server.js
+  Arguments: -c jest --silent --config=jest.config.json
   Directory: /Users/paulmbw/Projects/Javascript/react/react-playground
   Output:
   
