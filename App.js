@@ -9,6 +9,9 @@ import configureStore from './src/store/configureStore';
 import { setTextFilter } from './src/actions/filters';
 import "react-dates/lib/css/_datepicker.css";
 
+import './firebase/firebase';
+import './playground/promises';
+
 import { Provider } from 'react-redux';
 
 const store = configureStore();

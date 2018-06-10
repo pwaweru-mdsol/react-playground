@@ -23,19 +23,17 @@ exports[`ExpenseListFilters should render ExpenseListFilters 1`] = `
   </select>
   <withStyles(DateRangePicker)
     anchorDirection="left"
-    appendToBody={false}
     block={false}
     calendarInfoPosition="bottom"
     customArrowIcon={null}
     customCloseIcon={null}
     customInputIcon={null}
     daySize={39}
-    disableScroll={false}
     disabled={false}
     displayFormat={[Function]}
     enableOutsideDays={false}
     endDate={null}
-    endDateId="382113de-5f35-4f77-a442-75f44bc0156a"
+    endDateId="29a6e775-8b83-49ba-88f2-5cefffcf01ba"
     endDatePlaceholderText="End Date"
     firstDayOfWeek={null}
     focusedInput={null}
@@ -107,7 +105,7 @@ exports[`ExpenseListFilters should render ExpenseListFilters 1`] = `
     showDefaultInputIcon={false}
     small={false}
     startDate={null}
-    startDateId="28ae80c1-d6f3-4acb-85a5-126934fe4e24"
+    startDateId="0e19692f-1e39-4bd2-8a7e-cf1b8d9ae523"
     startDatePlaceholderText="Start Date"
     verticalHeight={null}
     verticalSpacing={22}
@@ -141,19 +139,17 @@ exports[`ExpenseListFilters should render ExpenseListFilters with updated filter
   </select>
   <withStyles(DateRangePicker)
     anchorDirection="left"
-    appendToBody={false}
     block={false}
     calendarInfoPosition="bottom"
     customArrowIcon={null}
     customCloseIcon={null}
     customInputIcon={null}
     daySize={39}
-    disableScroll={false}
     disabled={false}
     displayFormat={[Function]}
     enableOutsideDays={false}
     endDate={"1970-01-04T00:00:00.000Z"}
-    endDateId="7563922a-172a-4927-9d58-a437d4d9d506"
+    endDateId="e17e7148-5a48-49f7-870b-4f816f461242"
     endDatePlaceholderText="End Date"
     firstDayOfWeek={null}
     focusedInput={null}
@@ -225,7 +221,7 @@ exports[`ExpenseListFilters should render ExpenseListFilters with updated filter
     showDefaultInputIcon={false}
     small={false}
     startDate={"1970-01-01T00:00:00.000Z"}
-    startDateId="f646baaa-1c61-4c52-8b49-2f4c916e4cce"
+    startDateId="7c850464-0a48-4433-807e-b56a84baf86b"
     startDatePlaceholderText="Start Date"
     verticalHeight={null}
     verticalSpacing={22}

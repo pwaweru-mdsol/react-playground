@@ -28,11 +28,11 @@ const expenses = [
 
   describe('CreateExpense', () => {
     let wrapper;
-    let addExpenseSpy = jest.fn();
+    let startCreateExpenseSpy = jest.fn();
     let historySpy = { push: jest.fn() }
 
     beforeEach(() => {
-        wrapper = shallow(<CreateExpense addExpense={addExpenseSpy} history={historySpy} /> );
+        wrapper = shallow(<CreateExpense startCreateExpense={startCreateExpenseSpy} history={historySpy} /> );
     });
     
     test('should render CreateExpense component correctly', () => {
@@ -42,6 +42,6 @@ const expenses = [
     test('should handle onSubmit', () => {
         wrapper.find('ExpenseForm').prop('onSubmit')(expenses[0]);
         expect(historySpy.push).toHaveBeenLastCalledWith('/');
-        expect(addExpenseSpy).toHaveBeenLastCalledWith(expenses[0]);
+        expect(startCreateExpenseSpy).toHaveBeenLastCalledWith(expenses[0]);
     });
   });
